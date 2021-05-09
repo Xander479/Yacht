@@ -1,5 +1,6 @@
 package xander479;
 
+import java.util.Arrays;
 import java.util.Random;
 
 public class Die implements Comparable<Die> {
@@ -12,9 +13,12 @@ public class Die implements Comparable<Die> {
 		isLocked = false;
 	}
 	
-	public int roll() {
-		value = r.nextInt(6) + 1;
-		return value;
+	public Die[] rollDice(Die[] dice) {
+		for(Die die : dice) {
+			if(!isLocked) die.value = r.nextInt(6) + 1;
+		}
+		Arrays.sort(dice);
+		return dice;
 	}
 	
 	public int getValue() {
