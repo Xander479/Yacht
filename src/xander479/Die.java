@@ -21,8 +21,8 @@ public class Die implements Comparable<Die> {
 		return value;
 	}
 	
-	public void setLock(boolean lock) {
-		isLocked = lock; 
+	public void toggleLock() {
+		isLocked = !(isLocked); 
 	}
 	
 	public boolean isLocked() {
