@@ -163,5 +163,12 @@ public enum Category {
 		return isUsed;
 	}
 	
+	public static boolean isFull() {
+		for(Category cat : values()) {
+			if(!cat.isUsed()) return false;
+		}
+		return true;
+	}
+	
 	public abstract int getScore(Die[] dice);
 }
