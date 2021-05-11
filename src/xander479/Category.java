@@ -154,5 +154,14 @@ public enum Category {
 		}
 	};
 	
+	private boolean isUsed;
+	public void choose() {
+		this.isUsed = true;
+	}
+	
+	public boolean isUsed() {
+		return isUsed;
+	}
+	
 	public abstract int getScore(Die[] dice);
 }
