@@ -40,8 +40,8 @@ public class Player {
 		return score;
 	}
 	
-	public void finishGame() {
-		isFinished = true;
+	public void setFinished(boolean isFinished) {
+		this.isFinished = isFinished;
 	}
 	
 	public boolean isFinished() {
