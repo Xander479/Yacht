@@ -11,6 +11,11 @@ public enum Category {
 			}
 			return score;
 		}
+		
+		@Override
+		public String toString() {
+			return "Ones";
+		}
 	},
 	TWOS {
 
@@ -21,7 +26,12 @@ public enum Category {
 				if(die.getValue() == 2) score += 2;
 			}
 			return score;
-		}	
+		}
+		
+		@Override
+		public String toString() {
+			return "Twos";
+		}
 	},
 	THREES {
 
@@ -32,6 +42,11 @@ public enum Category {
 				if(die.getValue() == 3) score += 3;
 			}
 			return score;
+		}
+		
+		@Override
+		public String toString() {
+			return "Threes";
 		}
 	},
 	FOURS {
@@ -44,6 +59,11 @@ public enum Category {
 			}
 			return score;
 		}
+		
+		@Override
+		public String toString() {
+			return "Fours";
+		}
 	},
 	FIVES {
 
@@ -54,6 +74,11 @@ public enum Category {
 				if(die.getValue() == 5) score += 5;
 			}
 			return score;
+		}
+		
+		@Override
+		public String toString() {
+			return "Fives";
 		}
 	},
 	SIXES {
@@ -66,6 +91,11 @@ public enum Category {
 			}
 			return score;
 		}
+		
+		@Override
+		public String toString() {
+			return "Sixes";
+		}
 	},
 	CHOICE {
 
@@ -74,6 +104,11 @@ public enum Category {
 			int score = 0;
 			for(Die die : dice) score += die.getValue();
 			return score;
+		}
+		
+		@Override
+		public String toString() {
+			return "Choice";
 		}
 	},
 	FULL_HOUSE {
@@ -92,6 +127,11 @@ public enum Category {
 				}
 			}
 			return score;
+		}
+		
+		@Override
+		public String toString() {
+			return "Full House";
 		}
 	},
 	FOUR_OF_A_KIND {
@@ -113,6 +153,11 @@ public enum Category {
 			if(matchesFirst >= 4 || matchesLast >= 4) return score;
 			return 0; 
 		}
+		
+		@Override
+		public String toString() {
+			return "Four of a Kind";
+		}
 	},
 	S_STRAIGHT {
 
@@ -129,6 +174,11 @@ public enum Category {
 			if(breaks > 1) return 0;
 			return 15;
 		}
+		
+		@Override
+		public String toString() {
+			return "Small Straight";
+		}
 	},
 	L_STRAIGHT {
 
@@ -142,6 +192,11 @@ public enum Category {
 			}
 			return 30;
 		}
+		
+		@Override
+		public String toString() {
+			return "Large Straight";
+		}
 	},
 	YACHT {
 
@@ -151,6 +206,11 @@ public enum Category {
 				if(!(die.equals(dice[0]))) return 0;
 			}
 			return 50;
+		}
+		
+		@Override
+		public String toString() {
+			return "Yacht";
 		}
 	};
 	
@@ -168,6 +228,10 @@ public enum Category {
 			if(!cat.isUsed()) return false;
 		}
 		return true;
+	}
+	
+	public String getCatName() {
+		return this.toString();
 	}
 	
 	public abstract int getScore(Die[] dice);
