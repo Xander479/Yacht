@@ -1,5 +1,8 @@
 package xander479;
 
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+
 public enum Category {
 	ONES {
 
@@ -166,12 +169,16 @@ public enum Category {
 			if(dice[0].getValue() > 3) return 0;
 			
 			int previous = dice[0].getValue();
-			int breaks = 0;
+			int chain = 0;
 			for(int i = 1; i < dice.length; i++) {
-				if(dice[i].getValue() != previous + 1) breaks++;
+				if(dice[i].getValue() == previous + 1) {
+					chain++;
+					if(chain == 4) break;
+				}
+				else chain = 0;
 				previous = dice[i].getValue();
 			}
-			if(breaks > 1) return 0;
+			if(chain < 4) return 0;
 			return 15;
 		}
 		
@@ -203,6 +210,7 @@ public enum Category {
 		@Override
 		public int getScore(Die[] dice) {
 			for(Die die : dice) {
+				if(die.getValue() == 0) return 0;	// Stops from showing 50 when dice haven't been rolled
 				if(!(die.equals(dice[0]))) return 0;
 			}
 			return 50;
@@ -230,8 +238,12 @@ public enum Category {
 		return true;
 	}
 	
-	public String getCatName() {
-		return this.toString();
+	public SimpleStringProperty catNameProperty() {
+		return new SimpleStringProperty(this.toString());
+	}
+	
+	public SimpleIntegerProperty scoreProperty() {
+		return new SimpleIntegerProperty(this.getScore(Yacht.DICE));
 	}
 	
 	public abstract int getScore(Die[] dice);
